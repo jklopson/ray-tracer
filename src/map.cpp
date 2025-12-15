@@ -8,7 +8,7 @@ void Map::loadTestMap() {
     for (int y = 0; y < height_; ++y) {
         for (int x = 0; x < width_; ++x) {
             if (x == 0 || x == width_ - 1 || y == 0 || y == height_ - 1) {
-                grid_[y * width_ + x] = 1 //Wall
+                grid_[y * width_ + x] = 1; //Wall
             }
         }
     }

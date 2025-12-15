@@ -3,7 +3,7 @@
 #include <algorithm>
 
 Renderer::Renderer(int width, int height)
-    : window_(sf::VideoMode(width, height), "Wolfenstein 3D Raycaster"),
+    : window_(sf::VideoMode(sf::Vector2u(width, height)), "Wolfenstein 3D Raycaster"),
       screenWidth_(width), screenHeight_(height) {
     window_.setFramerateLimit(60);
 }
@@ -18,7 +18,7 @@ void Renderer::renderFrame(const std::vector<float>& distances) {
     
     // Draw floor (bottom half)
     sf::RectangleShape floor(sf::Vector2f(screenWidth_, screenHeight_ / 2.0f));
-    floor.setPosition(0, screenHeight_ / 2.0f);
+    floor.setPosition(sf::Vector2f(0, screenHeight_ / 2.0f));
     floor.setFillColor(sf::Color(40, 40, 40));
     window_.draw(floor);
     
@@ -41,7 +41,7 @@ void Renderer::renderFrame(const std::vector<float>& distances) {
         float y = (screenHeight_ - wallHeight) / 2.0f;
         
         sf::RectangleShape wall(sf::Vector2f(columnWidth + 1, wallHeight));
-        wall.setPosition(x, y);
+        wall.setPosition(sf::Vector2f(x, y));
         
         // Shade based on distance (farther = darker)
         int brightness = static_cast<int>(200.0f / (1.0f + distance * 0.1f));
